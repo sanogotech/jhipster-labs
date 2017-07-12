@@ -1,0 +1,6 @@
+entity MySubscription{
+	date LocalDate,
+   	 person_id Long
+}
+service all with serviceImpl 
+microservice * with subscription

@@ -1,0 +1,20 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "date",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "personid",
+            "fieldType": "Long"
+        }
+    ],
+    "changelogDate": "20170712225904",
+    "entityTableName": "my_subscription",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "microserviceName": "subscription"
+}

@@ -3,19 +3,16 @@ entity Person{
     surname String,
     gender Gender
 }
-enum Gender{
-MALE , FEMALE
-}
+
 
 entity Car{
  model  String,
  color  String
 }
-
-entity Subscription{
-	subDate LocalDate,
-    person_id Long
+enum Gender{
+	MALE , FEMALE
 }
+
 relationship OneToMany{
 	Person{cars} to Car
 }
@@ -23,7 +20,4 @@ relationship OneToMany{
 paginate Person with pagination
 dto * with mapstruct
 service all with serviceImpl 
-
-microservice * with person except Subscription
-microservice Subscription with subscription
- 
+microservice * with person

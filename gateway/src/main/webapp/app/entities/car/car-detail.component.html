@@ -1,0 +1,35 @@
+
+<div *ngIf="car">
+    <h2><span jhiTranslate="gatewayApp.car.detail.title">Car</span> {{car.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="gatewayApp.car.model">Model</span></dt>
+        <dd>
+            <span>{{car.model}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.car.color">Color</span></dt>
+        <dd>
+            <span>{{car.color}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.car.person">Person</span></dt>
+        <dd>
+            <div *ngIf="car.personId">
+                <a [routerLink]="['/person', car.personId]">{{car.personId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'car/'+ car.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
