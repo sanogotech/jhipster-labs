@@ -1,0 +1,27 @@
+{
+    "gatewayApp": {
+        "mySubscription" : {
+            "home": {
+                "title": "My Subscriptions",
+                "createLabel": "Create a new My Subscription",
+                "createOrEditLabel": "Create or edit a My Subscription"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete My Subscription {{ id }}?"
+            },
+            "detail": {
+                "title": "My Subscription"
+            },
+            "label": "Label",
+            "date": "Date",
+            "personid": "Personid"
+        }
+    },
+    "subscriptionApp": {
+        "mySubscription" : {
+            "created": "A new My Subscription is created with identifier {{ param }}",
+            "updated": "A My Subscription is updated with identifier {{ param }}",
+            "deleted": "A My Subscription is deleted with identifier {{ param }}"
+        }
+    }
+}

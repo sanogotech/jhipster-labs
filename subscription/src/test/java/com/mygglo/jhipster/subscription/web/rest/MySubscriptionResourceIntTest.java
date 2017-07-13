@@ -40,6 +40,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = SubscriptionApp.class)
 public class MySubscriptionResourceIntTest {
 
+    private static final String DEFAULT_LABEL = "AAAAAAAAAA";
+    private static final String UPDATED_LABEL = "BBBBBBBBBB";
+
     private static final LocalDate DEFAULT_DATE = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_DATE = LocalDate.now(ZoneId.systemDefault());
 
@@ -86,6 +89,7 @@ public class MySubscriptionResourceIntTest {
      */
     public static MySubscription createEntity(EntityManager em) {
         MySubscription mySubscription = new MySubscription()
+            .label(DEFAULT_LABEL)
             .date(DEFAULT_DATE)
             .personid(DEFAULT_PERSONID);
         return mySubscription;
@@ -111,6 +115,7 @@ public class MySubscriptionResourceIntTest {
         List<MySubscription> mySubscriptionList = mySubscriptionRepository.findAll();
         assertThat(mySubscriptionList).hasSize(databaseSizeBeforeCreate + 1);
         MySubscription testMySubscription = mySubscriptionList.get(mySubscriptionList.size() - 1);
+        assertThat(testMySubscription.getLabel()).isEqualTo(DEFAULT_LABEL);
         assertThat(testMySubscription.getDate()).isEqualTo(DEFAULT_DATE);
         assertThat(testMySubscription.getPersonid()).isEqualTo(DEFAULT_PERSONID);
     }
@@ -145,6 +150,7 @@ public class MySubscriptionResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(mySubscription.getId().intValue())))
+            .andExpect(jsonPath("$.[*].label").value(hasItem(DEFAULT_LABEL.toString())))
             .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())))
             .andExpect(jsonPath("$.[*].personid").value(hasItem(DEFAULT_PERSONID.intValue())));
     }
@@ -160,6 +166,7 @@ public class MySubscriptionResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(mySubscription.getId().intValue()))
+            .andExpect(jsonPath("$.label").value(DEFAULT_LABEL.toString()))
             .andExpect(jsonPath("$.date").value(DEFAULT_DATE.toString()))
             .andExpect(jsonPath("$.personid").value(DEFAULT_PERSONID.intValue()));
     }
@@ -183,6 +190,7 @@ public class MySubscriptionResourceIntTest {
         // Update the mySubscription
         MySubscription updatedMySubscription = mySubscriptionRepository.findOne(mySubscription.getId());
         updatedMySubscription
+            .label(UPDATED_LABEL)
             .date(UPDATED_DATE)
             .personid(UPDATED_PERSONID);
 
@@ -195,6 +203,7 @@ public class MySubscriptionResourceIntTest {
         List<MySubscription> mySubscriptionList = mySubscriptionRepository.findAll();
         assertThat(mySubscriptionList).hasSize(databaseSizeBeforeUpdate);
         MySubscription testMySubscription = mySubscriptionList.get(mySubscriptionList.size() - 1);
+        assertThat(testMySubscription.getLabel()).isEqualTo(UPDATED_LABEL);
         assertThat(testMySubscription.getDate()).isEqualTo(UPDATED_DATE);
         assertThat(testMySubscription.getPersonid()).isEqualTo(UPDATED_PERSONID);
     }

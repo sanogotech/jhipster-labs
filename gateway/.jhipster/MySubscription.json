@@ -15,7 +15,7 @@
             "fieldType": "Long"
         }
     ],
-    "changelogDate": "20170712225904",
+    "changelogDate": "20170713061618",
     "entityTableName": "my_subscription",
     "dto": "no",
     "pagination": "no",

@@ -1,4 +1,5 @@
 entity MySubscription{
+	label String,
 	date LocalDate,
    	 person_id Long
 }

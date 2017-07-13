@@ -23,6 +23,9 @@ public class MySubscription implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+    @Column(name = "jhi_label")
+    private String label;
+
     @Column(name = "jhi_date")
     private LocalDate date;
 
@@ -35,6 +38,19 @@ public class MySubscription implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public MySubscription label(String label) {
+        this.label = label;
+        return this;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
     }
 
     public LocalDate getDate() {
@@ -87,6 +103,7 @@ public class MySubscription implements Serializable {
     public String toString() {
         return "MySubscription{" +
             "id=" + getId() +
+            ", label='" + getLabel() + "'" +
             ", date='" + getDate() + "'" +
             ", personid='" + getPersonid() + "'" +
             "}";

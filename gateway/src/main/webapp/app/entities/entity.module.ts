@@ -2,12 +2,14 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { GatewayPersonModule } from './person/person.module';
 import { GatewayCarModule } from './car/car.module';
+import { GatewayMySubscriptionModule } from './my-subscription/my-subscription.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
     imports: [
         GatewayPersonModule,
         GatewayCarModule,
+        GatewayMySubscriptionModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

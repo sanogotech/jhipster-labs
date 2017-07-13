@@ -1,0 +1,60 @@
+<div>
+    <h2>
+        <span jhiTranslate="gatewayApp.mySubscription.home.title">My Subscriptions</span>
+        <button class="btn btn-primary float-right create-my-subscription" [routerLink]="['/', { outlets: { popup: ['my-subscription-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="gatewayApp.mySubscription.home.createLabel">
+            Create new My Subscription
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="mySubscriptions">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="gatewayApp.mySubscription.label">Label</span></th>
+            <th><span jhiTranslate="gatewayApp.mySubscription.date">Date</span></th>
+            <th><span jhiTranslate="gatewayApp.mySubscription.personid">Personid</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let mySubscription of mySubscriptions ;trackBy: trackId">
+                <td><a [routerLink]="['../my-subscription', mySubscription.id ]">{{mySubscription.id}}</a></td>
+                <td>{{mySubscription.label}}</td>
+                <td>{{mySubscription.date | date:'mediumDate'}}</td>
+                <td>{{mySubscription.personid}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../my-subscription', mySubscription.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'my-subscription/'+ mySubscription.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'my-subscription/'+ mySubscription.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
