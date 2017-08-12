@@ -7,21 +7,24 @@ import { MySubscription } from './my-subscription.model';
 import { MySubscriptionService } from './my-subscription.service';
 import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
 import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
+import {Person , PersonService} from '../person/index';
 
 @Component({
     selector: 'jhi-my-subscription',
     templateUrl: './my-subscription.component.html'
 })
 export class MySubscriptionComponent implements OnInit, OnDestroy {
-mySubscriptions: MySubscription[];
+    mySubscriptions: MySubscription[];
     currentAccount: any;
     eventSubscriber: Subscription;
+    person: Person;
 
     constructor(
         private mySubscriptionService: MySubscriptionService,
         private alertService: JhiAlertService,
         private eventManager: JhiEventManager,
-        private principal: Principal
+        private principal: Principal,
+        private personService: PersonService,
     ) {
     }
 

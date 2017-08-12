@@ -9,8 +9,8 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { MySubscription } from './my-subscription.model';
 import { MySubscriptionPopupService } from './my-subscription-popup.service';
 import { MySubscriptionService } from './my-subscription.service';
-import {User} from '../../shared/user/user.model';
-import {UserService} from '../../shared/user/user.service';
+import {Person, PersonService} from '../person/index';
+import {ResponseWrapper} from '../../shared/model/response-wrapper.model';
 
 @Component({
     selector: 'jhi-my-subscription-dialog',
@@ -21,18 +21,25 @@ export class MySubscriptionDialogComponent implements OnInit {
     mySubscription: MySubscription;
     isSaving: boolean;
     dateDp: any;
-
+    persons: Person[];
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: JhiAlertService,
         private mySubscriptionService: MySubscriptionService,
         private eventManager: JhiEventManager,
-
+        private personService: PersonService,
     ) {
+    }
+
+    loadAllPerson() {
+        this.personService.query().subscribe(
+            (res: ResponseWrapper) => this.persons = res.json
+        );
     }
 
     ngOnInit() {
         this.isSaving = false;
+        this.loadAllPerson();
     }
 
     clear() {

@@ -1,7 +1,7 @@
 entity MySubscription{
 	label String required,
 	date LocalDate required,
-   	ownerLogin String
+   	personId Long
 }
 service all with serviceImpl 
 microservice * with subscription

@@ -39,10 +39,12 @@
                 </small>
             </div>
         </div>
+
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="gatewayApp.mySubscription.ownerLogin" for="field_ownerLogin">Owner Login</label>
-            <input type="text" class="form-control" name="ownerLogin" id="field_ownerLogin"
-                [(ngModel)]="mySubscription.ownerLogin"  />
+            <label class="form-control-label" jhiTranslate="gatewayApp.mySubscription.personId" for="field_personId">Person Id</label>
+            <select class="form-control" id="field_personId" name="field_personId" [(ngModel)]="mySubscription.personId">
+                <option *ngFor="let person of persons" [value]="person.id">{{person.surname }} {{person.name }}</option>
+            </select>
         </div>
 
     </div>

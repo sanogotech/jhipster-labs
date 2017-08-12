@@ -17,8 +17,8 @@
             ]
         },
         {
-            "fieldName": "ownerLogin",
-            "fieldType": "String"
+            "fieldName": "personId",
+            "fieldType": "Long"
         }
     ],
     "changelogDate": "20170812173605",

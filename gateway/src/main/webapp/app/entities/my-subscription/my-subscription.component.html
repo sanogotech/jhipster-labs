@@ -19,7 +19,7 @@
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="gatewayApp.mySubscription.label">Label</span></th>
             <th><span jhiTranslate="gatewayApp.mySubscription.date">Date</span></th>
-            <th><span jhiTranslate="gatewayApp.mySubscription.ownerLogin">Owner Login</span></th>
+            <th><span jhiTranslate="gatewayApp.mySubscription.personId">Person Id</span></th>
             <th></th>
             </tr>
             </thead>
@@ -28,7 +28,7 @@
                 <td><a [routerLink]="['../my-subscription', mySubscription.id ]">{{mySubscription.id}}</a></td>
                 <td>{{mySubscription.label}}</td>
                 <td>{{mySubscription.date | date:'mediumDate'}}</td>
-                <td>{{mySubscription.ownerLogin}}</td>
+                <td>{{mySubscription.personId}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
