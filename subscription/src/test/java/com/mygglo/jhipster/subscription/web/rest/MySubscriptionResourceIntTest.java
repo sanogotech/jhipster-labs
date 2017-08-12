@@ -46,8 +46,8 @@ public class MySubscriptionResourceIntTest {
     private static final LocalDate DEFAULT_DATE = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_DATE = LocalDate.now(ZoneId.systemDefault());
 
-    private static final String DEFAULT_OWNER_LOGIN = "AAAAAAAAAA";
-    private static final String UPDATED_OWNER_LOGIN = "BBBBBBBBBB";
+    private static final Long DEFAULT_PERSON_ID = 1L;
+    private static final Long UPDATED_PERSON_ID = 2L;
 
     @Autowired
     private MySubscriptionRepository mySubscriptionRepository;
@@ -91,7 +91,7 @@ public class MySubscriptionResourceIntTest {
         MySubscription mySubscription = new MySubscription()
             .label(DEFAULT_LABEL)
             .date(DEFAULT_DATE)
-            .ownerLogin(DEFAULT_OWNER_LOGIN);
+            .personId(DEFAULT_PERSON_ID);
         return mySubscription;
     }
 
@@ -117,7 +117,7 @@ public class MySubscriptionResourceIntTest {
         MySubscription testMySubscription = mySubscriptionList.get(mySubscriptionList.size() - 1);
         assertThat(testMySubscription.getLabel()).isEqualTo(DEFAULT_LABEL);
         assertThat(testMySubscription.getDate()).isEqualTo(DEFAULT_DATE);
-        assertThat(testMySubscription.getOwnerLogin()).isEqualTo(DEFAULT_OWNER_LOGIN);
+        assertThat(testMySubscription.getPersonId()).isEqualTo(DEFAULT_PERSON_ID);
     }
 
     @Test
@@ -188,7 +188,7 @@ public class MySubscriptionResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(mySubscription.getId().intValue())))
             .andExpect(jsonPath("$.[*].label").value(hasItem(DEFAULT_LABEL.toString())))
             .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())))
-            .andExpect(jsonPath("$.[*].ownerLogin").value(hasItem(DEFAULT_OWNER_LOGIN.toString())));
+            .andExpect(jsonPath("$.[*].personId").value(hasItem(DEFAULT_PERSON_ID.intValue())));
     }
 
     @Test
@@ -204,7 +204,7 @@ public class MySubscriptionResourceIntTest {
             .andExpect(jsonPath("$.id").value(mySubscription.getId().intValue()))
             .andExpect(jsonPath("$.label").value(DEFAULT_LABEL.toString()))
             .andExpect(jsonPath("$.date").value(DEFAULT_DATE.toString()))
-            .andExpect(jsonPath("$.ownerLogin").value(DEFAULT_OWNER_LOGIN.toString()));
+            .andExpect(jsonPath("$.personId").value(DEFAULT_PERSON_ID.intValue()));
     }
 
     @Test
@@ -228,7 +228,7 @@ public class MySubscriptionResourceIntTest {
         updatedMySubscription
             .label(UPDATED_LABEL)
             .date(UPDATED_DATE)
-            .ownerLogin(UPDATED_OWNER_LOGIN);
+            .personId(UPDATED_PERSON_ID);
 
         restMySubscriptionMockMvc.perform(put("/api/my-subscriptions")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -241,7 +241,7 @@ public class MySubscriptionResourceIntTest {
         MySubscription testMySubscription = mySubscriptionList.get(mySubscriptionList.size() - 1);
         assertThat(testMySubscription.getLabel()).isEqualTo(UPDATED_LABEL);
         assertThat(testMySubscription.getDate()).isEqualTo(UPDATED_DATE);
-        assertThat(testMySubscription.getOwnerLogin()).isEqualTo(UPDATED_OWNER_LOGIN);
+        assertThat(testMySubscription.getPersonId()).isEqualTo(UPDATED_PERSON_ID);
     }
 
     @Test

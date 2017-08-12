@@ -32,8 +32,8 @@ public class MySubscription implements Serializable {
     @Column(name = "jhi_date", nullable = false)
     private LocalDate date;
 
-    @Column(name = "owner_login")
-    private String ownerLogin;
+    @Column(name = "person_id")
+    private Long personId;
 
     public Long getId() {
         return id;
@@ -69,17 +69,17 @@ public class MySubscription implements Serializable {
         this.date = date;
     }
 
-    public String getOwnerLogin() {
-        return ownerLogin;
+    public Long getPersonId() {
+        return personId;
     }
 
-    public MySubscription ownerLogin(String ownerLogin) {
-        this.ownerLogin = ownerLogin;
+    public MySubscription personId(Long personId) {
+        this.personId = personId;
         return this;
     }
 
-    public void setOwnerLogin(String ownerLogin) {
-        this.ownerLogin = ownerLogin;
+    public void setPersonId(Long personId) {
+        this.personId = personId;
     }
 
     @Override
@@ -108,7 +108,7 @@ public class MySubscription implements Serializable {
             "id=" + getId() +
             ", label='" + getLabel() + "'" +
             ", date='" + getDate() + "'" +
-            ", ownerLogin='" + getOwnerLogin() + "'" +
+            ", personId='" + getPersonId() + "'" +
             "}";
     }
 }

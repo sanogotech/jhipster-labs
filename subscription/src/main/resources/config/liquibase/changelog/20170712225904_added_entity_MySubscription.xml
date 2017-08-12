@@ -29,7 +29,7 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="owner_login" type="varchar(255)">
+            <column name="person_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 
