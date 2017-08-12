@@ -72,4 +72,9 @@ public class MySubscriptionServiceImpl implements MySubscriptionService{
         log.debug("Request to delete MySubscription : {}", id);
         mySubscriptionRepository.delete(id);
     }
+
+    @Override
+    public List<MySubscription> findByPersonId(Long personId) {
+        return mySubscriptionRepository.findByPersonId(personId);
+    }
 }

@@ -45,6 +45,12 @@ export class MySubscriptionService {
             .map((res: Response) => this.convertResponse(res));
     }
 
+    getPersonSubscription(personId: number, req?: any): Observable<ResponseWrapper> {
+        const options = createRequestOption(req);
+        return this.http.get(this.resourceUrl + '/person/' + personId, options)
+            .map((res: Response) => this.convertResponse(res));
+    }
+
     delete(id: number): Observable<Response> {
         return this.http.delete(`${this.resourceUrl}/${id}`);
     }
