@@ -4,7 +4,7 @@
       "packageName": "com.mygglo.jhipster.gateway",
       "nativeLanguage": "fr"
     },
-    "jhipsterVersion": "4.6.1",
+    "jhipsterVersion": "4.6.2",
     "baseName": "gateway",
     "packageName": "com.mygglo.jhipster.gateway",
     "packageFolder": "com/mygglo/jhipster/gateway",

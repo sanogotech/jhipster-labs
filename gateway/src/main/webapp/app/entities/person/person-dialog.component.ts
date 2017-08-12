@@ -17,7 +17,6 @@ import { PersonService } from './person.service';
 export class PersonDialogComponent implements OnInit {
 
     person: Person;
-    authorities: any[];
     isSaving: boolean;
 
     constructor(
@@ -30,7 +29,6 @@ export class PersonDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
     }
 
     clear() {
@@ -80,7 +78,6 @@ export class PersonDialogComponent implements OnInit {
 })
 export class PersonPopupComponent implements OnInit, OnDestroy {
 
-    modalRef: NgbModalRef;
     routeSub: any;
 
     constructor(
@@ -91,11 +88,11 @@ export class PersonPopupComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
-                this.modalRef = this.personPopupService
-                    .open(PersonDialogComponent, params['id']);
+                this.personPopupService
+                    .open(PersonDialogComponent as Component, params['id']);
             } else {
-                this.modalRef = this.personPopupService
-                    .open(PersonDialogComponent);
+                this.personPopupService
+                    .open(PersonDialogComponent as Component);
             }
         });
     }

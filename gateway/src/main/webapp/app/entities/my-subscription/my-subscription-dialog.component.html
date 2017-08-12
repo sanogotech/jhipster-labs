@@ -15,22 +15,34 @@
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="gatewayApp.mySubscription.label" for="field_label">Label</label>
             <input type="text" class="form-control" name="label" id="field_label"
-                [(ngModel)]="mySubscription.label"  />
+                [(ngModel)]="mySubscription.label" required />
+            <div [hidden]="!(editForm.controls.label?.dirty && editForm.controls.label?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.label?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="gatewayApp.mySubscription.date" for="field_date">Date</label>
             <div class="input-group">
                 <input id="field_date" type="text" class="form-control" name="date" ngbDatepicker  #dateDp="ngbDatepicker" [(ngModel)]="mySubscription.date"
-                />
+                required/>
                 <span class="input-group-btn">
                     <button type="button" class="btn btn-default" (click)="dateDp.toggle()"><i class="fa fa-calendar"></i></button>
                 </span>
             </div>
+            <div [hidden]="!(editForm.controls.date?.dirty && editForm.controls.date?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.date?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="gatewayApp.mySubscription.personid" for="field_personid">Personid</label>
-            <input type="number" class="form-control" name="personid" id="field_personid"
-                [(ngModel)]="mySubscription.personid"  />
+            <label class="form-control-label" jhiTranslate="gatewayApp.mySubscription.ownerLogin" for="field_ownerLogin">Owner Login</label>
+            <input type="text" class="form-control" name="ownerLogin" id="field_ownerLogin"
+                [(ngModel)]="mySubscription.ownerLogin"  />
         </div>
 
     </div>

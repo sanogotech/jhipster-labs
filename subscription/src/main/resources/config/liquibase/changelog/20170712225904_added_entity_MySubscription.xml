@@ -22,14 +22,14 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="jhi_label" type="varchar(255)">
-                <constraints nullable="true" />
+                <constraints nullable="false" />
             </column>
 
             <column name="jhi_date" type="date">
-                <constraints nullable="true" />
+                <constraints nullable="false" />
             </column>
 
-            <column name="personid" type="bigint">
+            <column name="owner_login" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 

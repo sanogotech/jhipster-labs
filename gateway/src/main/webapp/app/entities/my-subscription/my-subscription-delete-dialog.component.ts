@@ -44,7 +44,6 @@ export class MySubscriptionDeleteDialogComponent {
 })
 export class MySubscriptionDeletePopupComponent implements OnInit, OnDestroy {
 
-    modalRef: NgbModalRef;
     routeSub: any;
 
     constructor(
@@ -54,8 +53,8 @@ export class MySubscriptionDeletePopupComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            this.modalRef = this.mySubscriptionPopupService
-                .open(MySubscriptionDeleteDialogComponent, params['id']);
+            this.mySubscriptionPopupService
+                .open(MySubscriptionDeleteDialogComponent as Component, params['id']);
         });
     }
 

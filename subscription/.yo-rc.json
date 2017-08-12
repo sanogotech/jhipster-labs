@@ -4,7 +4,7 @@
       "packageName": "com.mygglo.jhipster.subscription",
       "nativeLanguage": "fr"
     },
-    "jhipsterVersion": "4.6.1",
+    "jhipsterVersion": "4.6.2",
     "baseName": "subscription",
     "packageName": "com.mygglo.jhipster.subscription",
     "packageFolder": "com/mygglo/jhipster/subscription",

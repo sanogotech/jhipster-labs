@@ -9,6 +9,8 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { MySubscription } from './my-subscription.model';
 import { MySubscriptionPopupService } from './my-subscription-popup.service';
 import { MySubscriptionService } from './my-subscription.service';
+import {User} from '../../shared/user/user.model';
+import {UserService} from '../../shared/user/user.service';
 
 @Component({
     selector: 'jhi-my-subscription-dialog',
@@ -17,7 +19,6 @@ import { MySubscriptionService } from './my-subscription.service';
 export class MySubscriptionDialogComponent implements OnInit {
 
     mySubscription: MySubscription;
-    authorities: any[];
     isSaving: boolean;
     dateDp: any;
 
@@ -25,13 +26,13 @@ export class MySubscriptionDialogComponent implements OnInit {
         public activeModal: NgbActiveModal,
         private alertService: JhiAlertService,
         private mySubscriptionService: MySubscriptionService,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
+
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
-        this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
     }
 
     clear() {
@@ -81,7 +82,6 @@ export class MySubscriptionDialogComponent implements OnInit {
 })
 export class MySubscriptionPopupComponent implements OnInit, OnDestroy {
 
-    modalRef: NgbModalRef;
     routeSub: any;
 
     constructor(
@@ -92,11 +92,11 @@ export class MySubscriptionPopupComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
-                this.modalRef = this.mySubscriptionPopupService
-                    .open(MySubscriptionDialogComponent, params['id']);
+                this.mySubscriptionPopupService
+                    .open(MySubscriptionDialogComponent as Component, params['id']);
             } else {
-                this.modalRef = this.mySubscriptionPopupService
-                    .open(MySubscriptionDialogComponent);
+                this.mySubscriptionPopupService
+                    .open(MySubscriptionDialogComponent as Component);
             }
         });
     }

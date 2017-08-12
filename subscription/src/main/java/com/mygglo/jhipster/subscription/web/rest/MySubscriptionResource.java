@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -42,7 +43,7 @@ public class MySubscriptionResource {
      */
     @PostMapping("/my-subscriptions")
     @Timed
-    public ResponseEntity<MySubscription> createMySubscription(@RequestBody MySubscription mySubscription) throws URISyntaxException {
+    public ResponseEntity<MySubscription> createMySubscription(@Valid @RequestBody MySubscription mySubscription) throws URISyntaxException {
         log.debug("REST request to save MySubscription : {}", mySubscription);
         if (mySubscription.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new mySubscription cannot already have an ID")).body(null);
@@ -64,7 +65,7 @@ public class MySubscriptionResource {
      */
     @PutMapping("/my-subscriptions")
     @Timed
-    public ResponseEntity<MySubscription> updateMySubscription(@RequestBody MySubscription mySubscription) throws URISyntaxException {
+    public ResponseEntity<MySubscription> updateMySubscription(@Valid @RequestBody MySubscription mySubscription) throws URISyntaxException {
         log.debug("REST request to update MySubscription : {}", mySubscription);
         if (mySubscription.getId() == null) {
             return createMySubscription(mySubscription);

@@ -5,7 +5,7 @@ export class MySubscription implements BaseEntity {
         public id?: number,
         public label?: string,
         public date?: any,
-        public personid?: number,
+        public ownerLogin?: string,
     ) {
     }
 }

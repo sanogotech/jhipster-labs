@@ -19,6 +19,8 @@ public class CarDTO implements Serializable {
 
     private Long personId;
 
+    private String personName;
+
     public Long getId() {
         return id;
     }
@@ -49,6 +51,14 @@ public class CarDTO implements Serializable {
 
     public void setPersonId(Long personId) {
         this.personId = personId;
+    }
+
+    public String getPersonName() {
+        return personName;
+    }
+
+    public void setPersonName(String personName) {
+        this.personName = personName;
     }
 
     @Override

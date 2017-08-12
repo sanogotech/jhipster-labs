@@ -68,7 +68,7 @@ class MySubscriptionGatlingTest extends Simulation {
             .exec(http("Create new mySubscription")
             .post("/subscription/api/my-subscriptions")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "label":"SAMPLE_TEXT", "date":"2020-01-01T00:00:00.000Z", "personid":null}""")).asJSON
+            .body(StringBody("""{"id":null, "label":"SAMPLE_TEXT", "date":"2020-01-01T00:00:00.000Z", "ownerLogin":"SAMPLE_TEXT"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_mySubscription_url"))).exitHereIfFailed
             .pause(10)

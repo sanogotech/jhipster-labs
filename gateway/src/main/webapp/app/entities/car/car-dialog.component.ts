@@ -19,7 +19,6 @@ import { ResponseWrapper } from '../../shared';
 export class CarDialogComponent implements OnInit {
 
     car: Car;
-    authorities: any[];
     isSaving: boolean;
 
     people: Person[];
@@ -35,7 +34,6 @@ export class CarDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
         this.personService.query()
             .subscribe((res: ResponseWrapper) => { this.people = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
@@ -91,7 +89,6 @@ export class CarDialogComponent implements OnInit {
 })
 export class CarPopupComponent implements OnInit, OnDestroy {
 
-    modalRef: NgbModalRef;
     routeSub: any;
 
     constructor(
@@ -102,11 +99,11 @@ export class CarPopupComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
-                this.modalRef = this.carPopupService
-                    .open(CarDialogComponent, params['id']);
+                this.carPopupService
+                    .open(CarDialogComponent as Component, params['id']);
             } else {
-                this.modalRef = this.carPopupService
-                    .open(CarDialogComponent);
+                this.carPopupService
+                    .open(CarDialogComponent as Component);
             }
         });
     }

@@ -1,7 +1,7 @@
 <div>
     <h2>
         <span jhiTranslate="gatewayApp.mySubscription.home.title">My Subscriptions</span>
-        <button class="btn btn-primary float-right create-my-subscription" [routerLink]="['/', { outlets: { popup: ['my-subscription-new'] } }]">
+        <button class="btn btn-primary float-right jh-create-entity create-my-subscription" [routerLink]="['/', { outlets: { popup: ['my-subscription-new'] } }]">
             <span class="fa fa-plus"></span>
             <span  jhiTranslate="gatewayApp.mySubscription.home.createLabel">
             Create new My Subscription
@@ -19,7 +19,7 @@
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="gatewayApp.mySubscription.label">Label</span></th>
             <th><span jhiTranslate="gatewayApp.mySubscription.date">Date</span></th>
-            <th><span jhiTranslate="gatewayApp.mySubscription.personid">Personid</span></th>
+            <th><span jhiTranslate="gatewayApp.mySubscription.ownerLogin">Owner Login</span></th>
             <th></th>
             </tr>
             </thead>
@@ -28,7 +28,7 @@
                 <td><a [routerLink]="['../my-subscription', mySubscription.id ]">{{mySubscription.id}}</a></td>
                 <td>{{mySubscription.label}}</td>
                 <td>{{mySubscription.date | date:'mediumDate'}}</td>
-                <td>{{mySubscription.personid}}</td>
+                <td>{{mySubscription.ownerLogin}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

@@ -5,7 +5,6 @@ import { JhiEventManager  } from 'ng-jhipster';
 
 import { Person } from './person.model';
 import { PersonService } from './person.service';
-import {MySubscription} from '../my-subscription/my-subscription.model';
 
 @Component({
     selector: 'jhi-person-detail',
@@ -14,10 +13,8 @@ import {MySubscription} from '../my-subscription/my-subscription.model';
 export class PersonDetailComponent implements OnInit, OnDestroy {
 
     person: Person;
-    mySubscription: MySubscription;
     private subscription: Subscription;
     private eventSubscriber: Subscription;
-    isSaving: boolean;
 
     constructor(
         private eventManager: JhiEventManager,
@@ -31,14 +28,11 @@ export class PersonDetailComponent implements OnInit, OnDestroy {
             this.load(params['id']);
         });
         this.registerChangeInPeople();
-        this.isSaving = false;
     }
 
     load(id) {
         this.personService.find(id).subscribe((person) => {
             this.person = person;
-            this.mySubscription = new MySubscription();
-            this.mySubscription.personid = id;
         });
     }
     previousState() {
@@ -55,9 +49,5 @@ export class PersonDetailComponent implements OnInit, OnDestroy {
             'personListModification',
             (response) => this.load(this.person.id)
         );
-    }
-    save() {
-        this.isSaving = true;
-        console.log(JSON.stringify(this.mySubscription));
     }
 }

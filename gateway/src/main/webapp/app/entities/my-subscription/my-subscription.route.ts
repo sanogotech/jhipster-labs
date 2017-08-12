@@ -9,8 +9,6 @@ import { MySubscriptionDetailComponent } from './my-subscription-detail.componen
 import { MySubscriptionPopupComponent } from './my-subscription-dialog.component';
 import { MySubscriptionDeletePopupComponent } from './my-subscription-delete-dialog.component';
 
-import { Principal } from '../../shared';
-
 export const mySubscriptionRoute: Routes = [
     {
         path: 'my-subscription',

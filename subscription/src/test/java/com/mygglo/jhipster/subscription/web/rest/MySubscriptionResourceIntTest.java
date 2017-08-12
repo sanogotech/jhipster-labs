@@ -46,8 +46,8 @@ public class MySubscriptionResourceIntTest {
     private static final LocalDate DEFAULT_DATE = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_DATE = LocalDate.now(ZoneId.systemDefault());
 
-    private static final Long DEFAULT_PERSONID = 1L;
-    private static final Long UPDATED_PERSONID = 2L;
+    private static final String DEFAULT_OWNER_LOGIN = "AAAAAAAAAA";
+    private static final String UPDATED_OWNER_LOGIN = "BBBBBBBBBB";
 
     @Autowired
     private MySubscriptionRepository mySubscriptionRepository;
@@ -91,7 +91,7 @@ public class MySubscriptionResourceIntTest {
         MySubscription mySubscription = new MySubscription()
             .label(DEFAULT_LABEL)
             .date(DEFAULT_DATE)
-            .personid(DEFAULT_PERSONID);
+            .ownerLogin(DEFAULT_OWNER_LOGIN);
         return mySubscription;
     }
 
@@ -117,7 +117,7 @@ public class MySubscriptionResourceIntTest {
         MySubscription testMySubscription = mySubscriptionList.get(mySubscriptionList.size() - 1);
         assertThat(testMySubscription.getLabel()).isEqualTo(DEFAULT_LABEL);
         assertThat(testMySubscription.getDate()).isEqualTo(DEFAULT_DATE);
-        assertThat(testMySubscription.getPersonid()).isEqualTo(DEFAULT_PERSONID);
+        assertThat(testMySubscription.getOwnerLogin()).isEqualTo(DEFAULT_OWNER_LOGIN);
     }
 
     @Test
@@ -141,6 +141,42 @@ public class MySubscriptionResourceIntTest {
 
     @Test
     @Transactional
+    public void checkLabelIsRequired() throws Exception {
+        int databaseSizeBeforeTest = mySubscriptionRepository.findAll().size();
+        // set the field null
+        mySubscription.setLabel(null);
+
+        // Create the MySubscription, which fails.
+
+        restMySubscriptionMockMvc.perform(post("/api/my-subscriptions")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(mySubscription)))
+            .andExpect(status().isBadRequest());
+
+        List<MySubscription> mySubscriptionList = mySubscriptionRepository.findAll();
+        assertThat(mySubscriptionList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkDateIsRequired() throws Exception {
+        int databaseSizeBeforeTest = mySubscriptionRepository.findAll().size();
+        // set the field null
+        mySubscription.setDate(null);
+
+        // Create the MySubscription, which fails.
+
+        restMySubscriptionMockMvc.perform(post("/api/my-subscriptions")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(mySubscription)))
+            .andExpect(status().isBadRequest());
+
+        List<MySubscription> mySubscriptionList = mySubscriptionRepository.findAll();
+        assertThat(mySubscriptionList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllMySubscriptions() throws Exception {
         // Initialize the database
         mySubscriptionRepository.saveAndFlush(mySubscription);
@@ -152,7 +188,7 @@ public class MySubscriptionResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(mySubscription.getId().intValue())))
             .andExpect(jsonPath("$.[*].label").value(hasItem(DEFAULT_LABEL.toString())))
             .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())))
-            .andExpect(jsonPath("$.[*].personid").value(hasItem(DEFAULT_PERSONID.intValue())));
+            .andExpect(jsonPath("$.[*].ownerLogin").value(hasItem(DEFAULT_OWNER_LOGIN.toString())));
     }
 
     @Test
@@ -168,7 +204,7 @@ public class MySubscriptionResourceIntTest {
             .andExpect(jsonPath("$.id").value(mySubscription.getId().intValue()))
             .andExpect(jsonPath("$.label").value(DEFAULT_LABEL.toString()))
             .andExpect(jsonPath("$.date").value(DEFAULT_DATE.toString()))
-            .andExpect(jsonPath("$.personid").value(DEFAULT_PERSONID.intValue()));
+            .andExpect(jsonPath("$.ownerLogin").value(DEFAULT_OWNER_LOGIN.toString()));
     }
 
     @Test
@@ -192,7 +228,7 @@ public class MySubscriptionResourceIntTest {
         updatedMySubscription
             .label(UPDATED_LABEL)
             .date(UPDATED_DATE)
-            .personid(UPDATED_PERSONID);
+            .ownerLogin(UPDATED_OWNER_LOGIN);
 
         restMySubscriptionMockMvc.perform(put("/api/my-subscriptions")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -205,7 +241,7 @@ public class MySubscriptionResourceIntTest {
         MySubscription testMySubscription = mySubscriptionList.get(mySubscriptionList.size() - 1);
         assertThat(testMySubscription.getLabel()).isEqualTo(UPDATED_LABEL);
         assertThat(testMySubscription.getDate()).isEqualTo(UPDATED_DATE);
-        assertThat(testMySubscription.getPersonid()).isEqualTo(UPDATED_PERSONID);
+        assertThat(testMySubscription.getOwnerLogin()).isEqualTo(UPDATED_OWNER_LOGIN);
     }
 
     @Test

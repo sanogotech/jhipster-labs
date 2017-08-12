@@ -9,8 +9,6 @@ import { PersonDetailComponent } from './person-detail.component';
 import { PersonPopupComponent } from './person-dialog.component';
 import { PersonDeletePopupComponent } from './person-delete-dialog.component';
 
-import { Principal } from '../../shared';
-
 @Injectable()
 export class PersonResolvePagingParams implements Resolve<any> {
 

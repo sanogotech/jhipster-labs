@@ -4,7 +4,7 @@
       "packageName": "com.mygglo.jhipster.person",
       "nativeLanguage": "fr"
     },
-    "jhipsterVersion": "4.6.1",
+    "jhipsterVersion": "4.6.2",
     "baseName": "person",
     "packageName": "com.mygglo.jhipster.person",
     "packageFolder": "com/mygglo/jhipster/person",

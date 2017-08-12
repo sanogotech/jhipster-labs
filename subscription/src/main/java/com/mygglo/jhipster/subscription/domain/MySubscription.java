@@ -4,6 +4,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -23,14 +24,16 @@ public class MySubscription implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "jhi_label")
+    @NotNull
+    @Column(name = "jhi_label", nullable = false)
     private String label;
 
-    @Column(name = "jhi_date")
+    @NotNull
+    @Column(name = "jhi_date", nullable = false)
     private LocalDate date;
 
-    @Column(name = "personid")
-    private Long personid;
+    @Column(name = "owner_login")
+    private String ownerLogin;
 
     public Long getId() {
         return id;
@@ -66,17 +69,17 @@ public class MySubscription implements Serializable {
         this.date = date;
     }
 
-    public Long getPersonid() {
-        return personid;
+    public String getOwnerLogin() {
+        return ownerLogin;
     }
 
-    public MySubscription personid(Long personid) {
-        this.personid = personid;
+    public MySubscription ownerLogin(String ownerLogin) {
+        this.ownerLogin = ownerLogin;
         return this;
     }
 
-    public void setPersonid(Long personid) {
-        this.personid = personid;
+    public void setOwnerLogin(String ownerLogin) {
+        this.ownerLogin = ownerLogin;
     }
 
     @Override
@@ -105,7 +108,7 @@ public class MySubscription implements Serializable {
             "id=" + getId() +
             ", label='" + getLabel() + "'" +
             ", date='" + getDate() + "'" +
-            ", personid='" + getPersonid() + "'" +
+            ", ownerLogin='" + getOwnerLogin() + "'" +
             "}";
     }
 }

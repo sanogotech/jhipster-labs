@@ -4,15 +4,21 @@
     "fields": [
         {
             "fieldName": "label",
-            "fieldType": "String"
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "date",
-            "fieldType": "LocalDate"
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
-            "fieldName": "personid",
-            "fieldType": "Long"
+            "fieldName": "ownerLogin",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20170712225904",

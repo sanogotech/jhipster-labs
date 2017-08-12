@@ -15,7 +15,6 @@ export class MySubscriptionDetailComponent implements OnInit, OnDestroy {
     mySubscription: MySubscription;
     private subscription: Subscription;
     private eventSubscriber: Subscription;
-    dateDp: any;
 
     constructor(
         private eventManager: JhiEventManager,

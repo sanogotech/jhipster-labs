@@ -14,7 +14,7 @@
             },
             "label": "Label",
             "date": "Date",
-            "personid": "Personid"
+            "ownerLogin": "Owner Login"
         }
     },
     "subscriptionApp": {

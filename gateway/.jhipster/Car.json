@@ -2,10 +2,10 @@
     "fluentMethods": true,
     "relationships": [
         {
+            "relationshipType": "many-to-one",
             "relationshipName": "person",
             "otherEntityName": "person",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
+            "otherEntityField": "name"
         }
     ],
     "fields": [
@@ -18,7 +18,7 @@
             "fieldType": "String"
         }
     ],
-    "changelogDate": "20170712223657",
+    "changelogDate": "20170812172625",
     "entityTableName": "car",
     "dto": "mapstruct",
     "pagination": "no",

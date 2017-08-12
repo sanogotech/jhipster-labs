@@ -9,8 +9,6 @@ import { CarDetailComponent } from './car-detail.component';
 import { CarPopupComponent } from './car-dialog.component';
 import { CarDeletePopupComponent } from './car-delete-dialog.component';
 
-import { Principal } from '../../shared';
-
 export const carRoute: Routes = [
     {
         path: 'car',

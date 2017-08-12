@@ -15,7 +15,7 @@
         <dt><span jhiTranslate="gatewayApp.car.person">Person</span></dt>
         <dd>
             <div *ngIf="car.personId">
-                <a [routerLink]="['/person', car.personId]">{{car.personId}}</a>
+                <a [routerLink]="['/person', car.personId]">{{car.personName}}</a>
             </div>
         </dd>
     </dl>

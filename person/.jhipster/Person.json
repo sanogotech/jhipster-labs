@@ -23,7 +23,7 @@
             "fieldValues": "MALE,FEMALE"
         }
     ],
-    "changelogDate": "20170712222008",
+    "changelogDate": "20170812174837",
     "entityTableName": "person",
     "dto": "mapstruct",
     "pagination": "pagination",

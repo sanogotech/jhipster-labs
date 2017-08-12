@@ -14,7 +14,7 @@ enum Gender{
 }
 
 relationship OneToMany{
-	Person{cars} to Car
+	Person{cars} to Car{person(name)}
 }
 
 paginate Person with pagination
