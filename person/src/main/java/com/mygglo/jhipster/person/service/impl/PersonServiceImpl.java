@@ -12,6 +12,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 /**
  * Service Implementation for managing Person.
@@ -82,5 +84,13 @@ public class PersonServiceImpl implements PersonService{
     public void delete(Long id) {
         log.debug("Request to delete Person : {}", id);
         personRepository.delete(id);
+    }
+
+    @Override
+    public void delete(List<Person> peoples) {
+
+        log.debug("Request to batch delete Persons" + peoples);
+
+        personRepository.delete(peoples);
     }
 }
