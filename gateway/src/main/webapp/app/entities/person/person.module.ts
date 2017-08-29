@@ -15,6 +15,7 @@ import {
     personPopupRoute,
     PersonResolvePagingParams,
 } from './';
+import {CustomService} from './custom.service';
 
 const ENTITY_STATES = [
     ...personRoute,
@@ -45,6 +46,7 @@ const ENTITY_STATES = [
         PersonService,
         PersonPopupService,
         PersonResolvePagingParams,
+        CustomService,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

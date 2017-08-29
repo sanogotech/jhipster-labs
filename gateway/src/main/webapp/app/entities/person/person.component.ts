@@ -7,6 +7,7 @@ import { Person } from './person.model';
 import { PersonService } from './person.service';
 import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
 import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
+import {CustomService} from './custom.service';
 
 @Component({
     selector: 'jhi-person',
@@ -38,7 +39,8 @@ currentAccount: any;
         private router: Router,
         private eventManager: JhiEventManager,
         private paginationUtil: JhiPaginationUtil,
-        private paginationConfig: PaginationConfig
+        private paginationConfig: PaginationConfig,
+        private customService: CustomService,
     ) {
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.routeData = this.activatedRoute.data.subscribe((data) => {
@@ -120,4 +122,13 @@ currentAccount: any;
     private onError(error) {
         this.alertService.error(error.message, null, null);
     }
+
+    batchDelete() {
+        console.log('--- delete ---- ' + JSON.stringify(this.people));
+        this.customService.batchDelete(this.people).subscribe( (res) => {
+            this.eventManager.broadcast({ name: 'personListModification', content: 'Delete them all'});
+
+        });
+    }
+
 }
